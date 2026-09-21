@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:lib="http://library.kdu.com/soap">
+  <soap:Header/>
+  <soap:Body>
+    <lib:getBookDetails>
+      <bookId>B001</bookId>
+    </lib:getBookDetails>
+  </soap:Body>
+</soap:Envelope>

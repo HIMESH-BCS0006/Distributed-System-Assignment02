@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- B999 does not exist in the catalog -> expect BookNotFoundFault -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:lib="http://library.kdu.com/soap">
+  <soap:Header/>
+  <soap:Body>
+    <lib:getBookDetails>
+      <bookId>B999</bookId>
+    </lib:getBookDetails>
+  </soap:Body>
+</soap:Envelope>

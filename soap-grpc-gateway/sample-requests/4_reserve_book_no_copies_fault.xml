@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- B002 has 0 available copies in the seeded catalog -> expect NoCopiesAvailableFault -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:lib="http://library.kdu.com/soap">
+  <soap:Header/>
+  <soap:Body>
+    <lib:reserveBook>
+      <bookId>B002</bookId>
+      <memberId>member-42</memberId>
+    </lib:reserveBook>
+  </soap:Body>
+</soap:Envelope>

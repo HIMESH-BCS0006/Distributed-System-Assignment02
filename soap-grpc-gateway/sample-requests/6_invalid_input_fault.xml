@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- blank bookId -> expect InvalidInputFault -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:lib="http://library.kdu.com/soap">
+  <soap:Header/>
+  <soap:Body>
+    <lib:checkAvailability>
+      <bookId></bookId>
+    </lib:checkAvailability>
+  </soap:Body>
+</soap:Envelope>
