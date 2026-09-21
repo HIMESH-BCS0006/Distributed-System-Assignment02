@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Reference copy of the Gateway's WSDL contract, for documentation and
+  offline review. The AUTHORITATIVE, always-current version of this file is
+  generated automatically by the running Gateway (JAX-WS) and served live at:
+
+      http://localhost:8080/ws/library?wsdl
+
+  This static copy mirrors that structure so the contract can be reviewed
+  without starting the service.
+-->
+<definitions name="LibraryCatalogService"
+             targetNamespace="http://library.kdu.com/soap"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://library.kdu.com/soap"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <types>
+        <xsd:schema targetNamespace="http://library.kdu.com/soap">
+
+            <xsd:element name="getBookDetails">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="bookId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getBookDetailsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="bookId" type="xsd:string" minOccurs="0"/>
+                                    <xsd:element name="title" type="xsd:string" minOccurs="0"/>
+                                    <xsd:element name="author" type="xsd:string" minOccurs="0"/>
+                                    <xsd:element name="isbn" type="xsd:string" minOccurs="0"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="checkAvailability">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="bookId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="checkAvailabilityResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="bookId" type="xsd:string" minOccurs="0"/>
+                                    <xsd:element name="totalCopies" type="xsd:int"/>
+                                    <xsd:element name="availableCopies" type="xsd:int"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="reserveBook">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="bookId" type="xsd:string"/>
+                        <xsd:element name="memberId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="reserveBookResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="return" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="reservationId" type="xsd:string" minOccurs="0"/>
+                                    <xsd:element name="bookId" type="xsd:string" minOccurs="0"/>
+                                    <xsd:element name="memberId" type="xsd:string" minOccurs="0"/>
+                                    <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- SOAP faults -->
+            <xsd:element name="InvalidInputFault" type="xsd:string"/>
+            <xsd:element name="BookNotFoundFault" type="xsd:string"/>
+            <xsd:element name="NoCopiesAvailableFault" type="xsd:string"/>
+            <xsd:element name="ServiceUnavailableFault" type="xsd:string"/>
+        </xsd:schema>
+    </types>
+
+    <message name="getBookDetails">
+        <part name="parameters" element="tns:getBookDetails"/>
+    </message>
+    <message name="getBookDetailsResponse">
+        <part name="parameters" element="tns:getBookDetailsResponse"/>
+    </message>
+    <message name="checkAvailability">
+        <part name="parameters" element="tns:checkAvailability"/>
+    </message>
+    <message name="checkAvailabilityResponse">
+        <part name="parameters" element="tns:checkAvailabilityResponse"/>
+    </message>
+    <message name="reserveBook">
+        <part name="parameters" element="tns:reserveBook"/>
+    </message>
+    <message name="reserveBookResponse">
+        <part name="parameters" element="tns:reserveBookResponse"/>
+    </message>
+    <message name="InvalidInputFault">
+        <part name="fault" element="tns:InvalidInputFault"/>
+    </message>
+    <message name="BookNotFoundFault">
+        <part name="fault" element="tns:BookNotFoundFault"/>
+    </message>
+    <message name="NoCopiesAvailableFault">
+        <part name="fault" element="tns:NoCopiesAvailableFault"/>
+    </message>
+    <message name="ServiceUnavailableFault">
+        <part name="fault" element="tns:ServiceUnavailableFault"/>
+    </message>
+
+    <portType name="LibraryCatalogService">
+        <operation name="getBookDetails">
+            <input message="tns:getBookDetails"/>
+            <output message="tns:getBookDetailsResponse"/>
+            <fault name="InvalidInputFault" message="tns:InvalidInputFault"/>
+            <fault name="BookNotFoundFault" message="tns:BookNotFoundFault"/>
+            <fault name="ServiceUnavailableFault" message="tns:ServiceUnavailableFault"/>
+        </operation>
+        <operation name="checkAvailability">
+            <input message="tns:checkAvailability"/>
+            <output message="tns:checkAvailabilityResponse"/>
+            <fault name="InvalidInputFault" message="tns:InvalidInputFault"/>
+            <fault name="BookNotFoundFault" message="tns:BookNotFoundFault"/>
+            <fault name="ServiceUnavailableFault" message="tns:ServiceUnavailableFault"/>
+        </operation>
+        <operation name="reserveBook">
+            <input message="tns:reserveBook"/>
+            <output message="tns:reserveBookResponse"/>
+            <fault name="InvalidInputFault" message="tns:InvalidInputFault"/>
+            <fault name="BookNotFoundFault" message="tns:BookNotFoundFault"/>
+            <fault name="NoCopiesAvailableFault" message="tns:NoCopiesAvailableFault"/>
+            <fault name="ServiceUnavailableFault" message="tns:ServiceUnavailableFault"/>
+        </operation>
+    </portType>
+
+    <binding name="LibraryCatalogServicePortBinding" type="tns:LibraryCatalogService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getBookDetails">
+            <soap:operation soapAction=""/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+            <fault name="InvalidInputFault"><soap:fault name="InvalidInputFault" use="literal"/></fault>
+            <fault name="BookNotFoundFault"><soap:fault name="BookNotFoundFault" use="literal"/></fault>
+            <fault name="ServiceUnavailableFault"><soap:fault name="ServiceUnavailableFault" use="literal"/></fault>
+        </operation>
+        <operation name="checkAvailability">
+            <soap:operation soapAction=""/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+            <fault name="InvalidInputFault"><soap:fault name="InvalidInputFault" use="literal"/></fault>
+            <fault name="BookNotFoundFault"><soap:fault name="BookNotFoundFault" use="literal"/></fault>
+            <fault name="ServiceUnavailableFault"><soap:fault name="ServiceUnavailableFault" use="literal"/></fault>
+        </operation>
+        <operation name="reserveBook">
+            <soap:operation soapAction=""/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+            <fault name="InvalidInputFault"><soap:fault name="InvalidInputFault" use="literal"/></fault>
+            <fault name="BookNotFoundFault"><soap:fault name="BookNotFoundFault" use="literal"/></fault>
+            <fault name="NoCopiesAvailableFault"><soap:fault name="NoCopiesAvailableFault" use="literal"/></fault>
+            <fault name="ServiceUnavailableFault"><soap:fault name="ServiceUnavailableFault" use="literal"/></fault>
+        </operation>
+    </binding>
+
+    <service name="LibraryCatalogService">
+        <port name="LibraryCatalogServicePort" binding="tns:LibraryCatalogServicePortBinding">
+            <soap:address location="http://localhost:8080/ws/library"/>
+        </port>
+    </service>
+</definitions>
