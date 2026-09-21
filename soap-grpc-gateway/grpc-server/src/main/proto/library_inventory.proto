@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package library;
+
+option java_package = "com.kdu.library.grpc";
+option java_multiple_files = true;
+
+// The new, modern service. Only speaks Protocol Buffers over gRPC/HTTP2.
+// The legacy SOAP client (see gateway/soap-client) cannot call this directly.
+service LibraryInventoryService {
+  rpc GetBookDetails (BookRequest) returns (BookDetailsResponse);
+  rpc CheckAvailability (BookRequest) returns (AvailabilityResponse);
+  rpc ReserveBook (ReserveRequest) returns (ReservationResponse);
+}
+
+message BookRequest {
+  string book_id = 1;
+}
+
+message BookDetailsResponse {
+  string book_id = 1;
+  string title = 2;
+  string author = 3;
+  string isbn = 4;
+}
+
+message AvailabilityResponse {
+  string book_id = 1;
+  int32 total_copies = 2;
+  int32 available_copies = 3;
+}
+
+message ReserveRequest {
+  string book_id = 1;
+  string member_id = 2;
+}
+
+message ReservationResponse {
+  string reservation_id = 1;
+  string book_id = 2;
+  string member_id = 3;
+  string status = 4; // e.g. "CONFIRMED"
+}
